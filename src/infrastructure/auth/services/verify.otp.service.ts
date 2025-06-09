@@ -1,25 +1,46 @@
 "use server";
+import { postRequest } from "@/infrastructure/api/api.action.call";
 import { OtpVerificationModel } from "../validators/otp.verifiication.schema";
 
-export const OtpVerificationService = async (formData: OtpVerificationModel) => {
-  console.log("OTP Verification Form Data", formData);
-  // Here you would typically send the OTP to your backend for verification
-  // For example:
-  // const response = await fetch('/api/verify-otp', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify(formData),
-  // });
-  // return response.json();
+export const OtpVerificationService = async (
+  email: string,
+  formData: OtpVerificationModel
+) => {
+  const url = "/auth/validate-otp";
+  try {
+    const response = await postRequest({
+      url,
+      body: { email, code: formData.otp },
+    });
+
+    if (response.success) {
+      return response.data;
+    } else {
+      throw new Error(
+        response.message || "Failed to validate OTP. Please try again."
+      );
+    }
+  } catch (error: any) {
+    throw new Error(`${error.message || "Please try again."}`);
+  }
 };
 
+export const generateOtp = async (email: string) => {
+  const url = "/auth/generate-otp";
+  try {
+    const response = await postRequest({
+      url,
+      body: { email },
+    });
 
-export const generateOtp = async (email:string) => {
-  // Generate a random 6-digit OTP
-  console.log("Generating OTP for email:", email);
-  const otp = Math.floor(100000 + Math.random() * 900000).toString();
-}
-
-
+    if (response.success) {
+      return response.data;
+    } else {
+      throw new Error(
+        response.message || "Failed to generate OTP. Please try again."
+      );
+    }
+  } catch (error: any) {
+    throw new Error(`${error.message || "Please try again."}`);
+  }
+};

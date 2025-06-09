@@ -21,6 +21,7 @@ import {
 } from "@/infrastructure/auth/validators/sign.in.validators";
 import { signInService } from "@/infrastructure/auth/services/sign.in.service";
 import { useRouter } from "next/navigation";
+import { generateOtp } from "@/infrastructure/auth/services/verify.otp.service";
 const SignInHome = () => {
     const router = useRouter();
   const form = useForm<SignInFormModel>({
@@ -36,7 +37,9 @@ const SignInHome = () => {
 
   const onSubmit = async (data: SignInFormModel) => {
     try {
-      await signInService(data);
+      const response = await signInService(data);
+      console.log("Sign-in response:", response);
+      await generateOtp(data.email); // Generate OTP after successful sign-in
       form.reset();
       router.push(`/auth/otp-verification?email=${data.email}`);
       toast.success("Signed in successfully! Redirecting to dashboard...");

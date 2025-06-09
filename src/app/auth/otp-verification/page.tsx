@@ -1,4 +1,3 @@
-// src/app/auth/otp-verification/page.tsx
 
 import React from "react";
 import OtpVerificationHome from "./OtpVerificationHome";

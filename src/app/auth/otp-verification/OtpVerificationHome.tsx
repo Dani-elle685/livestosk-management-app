@@ -60,7 +60,7 @@ const OtpVerificationHome: React.FC<OtpVerificationHomeProps> = ({
 
   const handleOtpVerification = async (data: OtpVerificationModel) => {
     try {
-     await OtpVerificationService(data);
+     await OtpVerificationService(email,data);
       setStatus("success");
       toast.success("OTP verified successfully! Redirecting to dashboard...");
       setTimeout(() => router.push("/dashboard"), 1000);
@@ -73,7 +73,7 @@ const OtpVerificationHome: React.FC<OtpVerificationHomeProps> = ({
   const handleResendOtp = async () => {
     try {
       await generateOtp(email);
-      setResendCooldown(60);
+      setResendCooldown(180);
       setStatus(null); 
       form.setValue("otp", "");
       toast.success("OTP resent successfully! Please check your email.");
@@ -132,21 +132,29 @@ const OtpVerificationHome: React.FC<OtpVerificationHomeProps> = ({
 
               <div className="flex items-center justify-center gap-4">
                 <CountdownCircleTimer
-                  isPlaying={resendCooldown > 0}
-                  duration={60}
-                  key={resendCooldown}
-                  colors="#ef4444"
-                  size={42}
-                  strokeWidth={4}
-                  onComplete={() => {
-                    setResendCooldown(0);
-                    return { shouldRepeat: false };
-                  }}
-                >
-                  {({ remainingTime }) => (
-                    <span className="text-sm">{remainingTime}s</span>
-                  )}
-                </CountdownCircleTimer>
+  isPlaying={resendCooldown > 0}
+  duration={180} // 3 minutes in seconds
+  key={resendCooldown}
+  colors="#ef4444"
+  size={42}
+  strokeWidth={4}
+  onComplete={() => {
+    setResendCooldown(0);
+    return { shouldRepeat: false };
+  }}
+>
+  {({ remainingTime }) => {
+    const minutes = Math.floor(remainingTime / 60);
+    const seconds = remainingTime % 60;
+    const paddedSeconds = seconds.toString().padStart(2, "0");
+
+    return (
+      <div className="text-xs text-red-500 font-medium">
+        {minutes}:{paddedSeconds}
+      </div>
+    );
+  }}
+</CountdownCircleTimer>
 
                 <Button
                   type="button"
