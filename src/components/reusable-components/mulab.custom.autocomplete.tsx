@@ -10,7 +10,7 @@ import { Control, FieldPath, FieldValues } from 'react-hook-form'
 
 type InputProps<T extends FieldValues> = {
     label: string
-    description: string
+    description?: string
     name: FieldPath<T>
     control: Control<T>
     placeholder: string

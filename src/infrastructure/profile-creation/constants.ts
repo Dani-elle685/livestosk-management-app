@@ -1,0 +1,1 @@
+export const PROFILE_CREATION_URL = "/auth/profile";

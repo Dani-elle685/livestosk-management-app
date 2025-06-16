@@ -1,12 +1,13 @@
 "use server";
 import { postRequest } from "@/infrastructure/api/api.action.call";
 import { OtpVerificationModel } from "../validators/otp.verifiication.schema";
+import { GENERATE_OTP_URL, VALIDATE_OTP_URL } from "../constants";
 
 export const OtpVerificationService = async (
   email: string,
   formData: OtpVerificationModel
 ) => {
-  const url = "/auth/validate-otp";
+  const url = VALIDATE_OTP_URL;
   try {
     const response = await postRequest({
       url,
@@ -26,7 +27,7 @@ export const OtpVerificationService = async (
 };
 
 export const generateOtp = async (email: string) => {
-  const url = "/auth/generate-otp";
+  const url = GENERATE_OTP_URL;
   try {
     const response = await postRequest({
       url,

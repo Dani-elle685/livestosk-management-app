@@ -39,10 +39,10 @@ const SignInHome = () => {
     try {
       const response = await signInService(data);
       console.log("Sign-in response:", response);
-      await generateOtp(data.email); // Generate OTP after successful sign-in
+      await generateOtp(data.email); 
       form.reset();
       router.push(`/auth/otp-verification?email=${data.email}`);
-      toast.success("Signed in successfully! Redirecting to dashboard...");
+      toast.success("Signed in successfully!");
     } catch (error:any) {
       toast.error(`Failed to sign in. ${error.message || "Please try again."}`);
       

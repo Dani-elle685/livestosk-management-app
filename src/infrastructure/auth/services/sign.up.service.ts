@@ -4,9 +4,10 @@ import {
   SignUpFormModel,
   SignUpFormSchema,
 } from "../validators/sign.up.validators";
+import { SIGN_UP_URL } from "../constants";
 
 export const signUpService = async (formData: SignUpFormModel) => {
-  const url = "/auth/register";
+  const url = SIGN_UP_URL;
   const data = SignUpFormSchema.safeParse(formData);
   if (!data.success) {
     throw new Error("Invalid form data. Please check your input.");
