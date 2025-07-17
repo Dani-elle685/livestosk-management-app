@@ -27,44 +27,44 @@ export default async function middleware(req: NextRequest) {
   const role = cookie?.user?.profileType as UserRole | undefined;
 
   // 🔒 User not authenticated but trying to access a protected route
-  if (isProtectedRoute && !cookie) {
-    return NextResponse.redirect(new URL("/auth/sign-in", req.url));
-  }
+  // if (isProtectedRoute && !cookie) {
+  //   return NextResponse.redirect(new URL("/auth/sign-in", req.url));
+  // }
    
-  // 🔄 User authenticated but trying to access public routes
-  if (isPublicRoute && cookie) {
-    if (path !== "/dashboard") {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
-    }
-  }
+  // // 🔄 User authenticated but trying to access public routes
+  // if (isPublicRoute && cookie) {
+  //   if (path !== "/dashboard") {
+  //     return NextResponse.redirect(new URL("/dashboard", req.url));
+  //   }
+  // }
 
-  // Handle role-specific authorization
-  if (cookie && role) {
-    // Redirect from profile to dashboard
-    if (path === "/profile") {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
-    }
+  // // Handle role-specific authorization
+  // if (cookie && role) {
+  //   // Redirect from profile to dashboard
+  //   if (path === "/profile") {
+  //     return NextResponse.redirect(new URL("/dashboard", req.url));
+  //   }
 
-    // Validate user role
-    if (!isValidRole(role)) {
-      return NextResponse.redirect(new URL("/unauthorized", req.url));
-    }
+  //   // Validate user role
+  //   if (!isValidRole(role)) {
+  //     return NextResponse.redirect(new URL("/unauthorized", req.url));
+  //   }
 
-    // Handle root dashboard redirection
-    if (path === "/dashboard") {
-      return NextResponse.redirect(new URL(ROLE_PATHS[role], req.url));
-    }
+  //   // Handle root dashboard redirection
+  //   if (path === "/dashboard") {
+  //     return NextResponse.redirect(new URL(ROLE_PATHS[role], req.url));
+  //   }
 
-    // Check role-based routes with proper type assertion
-    for (const route of roleBasedRoutes) {
-      if (path.startsWith(route.path)) {
-        if (!(route.roles as UserRole[]).includes(role)) {
-          return NextResponse.redirect(new URL("/unauthorized", req.url));
-        }
-        break;
-      }
-    }
-  }
+  //   // Check role-based routes with proper type assertion
+  //   for (const route of roleBasedRoutes) {
+  //     if (path.startsWith(route.path)) {
+  //       if (!(route.roles as UserRole[]).includes(role)) {
+  //         return NextResponse.redirect(new URL("/unauthorized", req.url));
+  //       }
+  //       break;
+  //     }
+  //   }
+  // }
 
   return NextResponse.next();
 }
