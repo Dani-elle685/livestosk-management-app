@@ -8,15 +8,14 @@ export default function DashBoardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SidebarProvider className="w-full">
+    <SidebarProvider className="flex min-h-screen w-full">
       <AppSidebar />
-
-      <main className="w-full bg-[#FAF7F7]">
+      <div className="flex-1 flex flex-col bg-[#FAF7F7]">
         <nav>
           <TopNavBar />
         </nav>
-        <div className=" w-full px-4">{children}</div>
-      </main>
+        <div className="flex-1 px-4">{children}</div>
+      </div>
     </SidebarProvider>
   );
 }

@@ -22,6 +22,7 @@ const TopNavBar = ({
             // onClick?.(event)
             toggleSidebar();
           }}
+          className="cursor-pointer"
         />
         <span className="font-bold text-base">
           {pathname

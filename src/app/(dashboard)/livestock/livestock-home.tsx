@@ -31,7 +31,7 @@ const LivestockHome:React.FC<Props> = ({allAnimals = []}) => {
   return (
     <div className="space-y-4 w-full py-6">
       {/* Summary Filter Bar */}
-      <div className="flex flex-wrap gap-4 sm:flex-row items-center border-b pb-4">
+      <div className="flex flex-wrap gap-4 sm:flex-row items-center border-b pb-4 bg-white w-full p-1 md:p-4">
         <button
           onClick={() => setFilterType('All')}
           className={`px-4 py-2 border rounded ${filterType === 'All' ? 'bg-pink-100 border-pink-300' : 'border-gray-300'}`}
@@ -55,7 +55,10 @@ const LivestockHome:React.FC<Props> = ({allAnimals = []}) => {
       </div>
 
       {/* Filtered Table */}
-      <LivestockDataTable data={filteredData} />
+      <div className='bg-white w-full p-1 md:p-4'>
+              <LivestockDataTable data={filteredData} />
+
+      </div>
     </div>
   );
 };
