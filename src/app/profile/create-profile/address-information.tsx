@@ -19,7 +19,6 @@ import {
 import { Button } from "@/components/ui/button";
 import MulabCustomAutocomplete from "@/components/reusable-components/mulab.custom.autocomplete";
 import { getCountiesByRegion, getCountryOptions, getRegionsByCountry, getSubCountiesByCounty, getWardsBySubCounty } from "@/infrastructure/profile-creation/hooks.ts/address.selection.options";
-import { useFormContext } from "../context/form-step-context";
 import { ConfirmProfileCreation } from "./confirmDialog";
 
 interface AddressInformationStepProps {

@@ -75,7 +75,7 @@ const AddLivestockForm: React.FC<AddLivestockFormProps> = ({
       form.reset();
       onSuccess();
     } catch (error: any) {
-      toast.error("Operation Failed.", error.message);
+      toast.error(error.message ?? "Operation Failed.");
     }
   };
 

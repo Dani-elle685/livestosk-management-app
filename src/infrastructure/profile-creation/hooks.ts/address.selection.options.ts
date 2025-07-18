@@ -68,3 +68,9 @@ const wardMap: Record<string, { label: string; value: string }[]> = {
 export const getWardsBySubCounty = (subCounty: string) => {
   return wardMap[subCounty] || [];
 };
+
+export const businessTypeOptions = [
+    { label: "Dairy Farm", value: "Dairy Farm" },
+    { label: "Poultry Farm", value: "Poultry Farm" },
+    { label: "Sheep Farm", value: "Sheep Farm" },
+  ];
