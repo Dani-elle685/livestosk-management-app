@@ -46,7 +46,7 @@ const FarmInformation:React.FC<FarmInformationStepProps> = ({initialData, onBack
     onSubmit(data);
     onNext();
   };
-  const idTypeOptions = [
+  const businessTypeOptions = [
     { label: "DairyFarm", value: "Dairy Farm" },
     { label: "PoultryFarm", value: "Poultry Farm" },
     { label: "SheepFarm", value: "Sheep Farm" },
@@ -84,7 +84,7 @@ const FarmInformation:React.FC<FarmInformationStepProps> = ({initialData, onBack
                 name="businessType"
                 label="Farm/Business Type "
                 placeholder="Select Type"
-                items={idTypeOptions}
+                items={businessTypeOptions}
               />
             </div>
             <div>

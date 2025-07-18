@@ -20,6 +20,7 @@ import {
   PandaIcon,
   Settings,
   SquareUserRound,
+  User
 } from "lucide-react";
 
 import Image from "next/image";
@@ -51,6 +52,11 @@ const menuItems = [
 ];
 
 const lowerMenu = [
+  {
+    icon: User,
+    url: "/user-profile",
+    title: "User Profile",
+  },
   {
     icon: Settings,
     url: "/settings",
