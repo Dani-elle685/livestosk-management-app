@@ -69,9 +69,9 @@ const SideBar = () => {
       <SidebarContent className="flex flex-col h-full">
         {/* Top Section */}
         {/* Logo */}
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 p-2 items-center">
           <Image src={LogoImage} height={24} width={24} alt="LOGO" />
-          <span className="hidden md:inline font-semibold text-lg">
+          <span className="font-semibold text-lg">
             FlowStatic
           </span>
         </div>
@@ -91,7 +91,7 @@ const SideBar = () => {
                       className="flex items-center gap-3 p-2 rounded hover:bg-red-100 transition-colors"
                     >
                       <item.icon className="h-5 w-5" />
-                      <span className="hidden md:inline font-medium">
+                      <span className="font-medium">
                         {item.title}
                       </span>
                     </Link>
@@ -113,7 +113,7 @@ const SideBar = () => {
                   className="flex items-center gap-3 p-2 rounded hover:bg-red-100 transition-colors"
                 >
                   <item.icon className="h-5 w-5" />
-                  <span className="hidden md:inline font-medium">
+                  <span className="font-medium">
                     {item.title}
                   </span>
                 </Link>

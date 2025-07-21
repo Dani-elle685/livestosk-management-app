@@ -37,15 +37,13 @@ const SignInHome = () => {
 
   const onSubmit = async (data: SignInFormModel) => {
     try {
-      const response = await signInService(data);
-      console.log("Sign-in response:", response);
+      await signInService(data);
       await generateOtp(data.email); 
       form.reset();
       router.push(`/auth/otp-verification?email=${data.email}`);
       toast.success("Signed in successfully!");
     } catch (error:any) {
       toast.error(`Failed to sign in. ${error.message || "Please try again."}`);
-      
     }
   };
 

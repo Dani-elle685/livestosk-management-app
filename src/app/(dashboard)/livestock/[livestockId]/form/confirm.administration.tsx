@@ -1,8 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { LivestockVaccine } from "@/infrastructure/vaccine/dto/vaccine.dto";
-import { deleteVaccineService } from "@/infrastructure/vaccine/services/delete.vaccine.service";
+import { vaccineAdministartionVaccineService } from "@/infrastructure/vaccine/services/confirm.vaccine.administration.service";
 import React, { useTransition } from "react";
 import { toast } from "sonner";
 
@@ -11,27 +12,27 @@ interface Props {
   onClose?: () => void;
 }
 
-const DeleteVaccine: React.FC<Props> = ({ vaccine, onClose }) => {
+const ConfirmVaccineAdministration: React.FC<Props> = ({ vaccine, onClose }) => {
   const [isSubmitting, setTransitions] = useTransition();
 
-  const handleVaccineDelete = () => {
+  const handleVaccineAdministration = () => {
     setTransitions(async () => {
       try {
-        await deleteVaccineService(vaccine?.recordId!);
-        toast.success("Vaccine Deletetion Success");
+        await vaccineAdministartionVaccineService(vaccine?.recordId!);
+        toast.success("Vaccine Administartion Confirmed.");
         onClose?.();
       } catch (error: any) {
-        toast.error(error.message ?? "Deletion Failed");
+        toast.error( error.message ?? "Record Update failed.");
       }
     });
   };
+  
   return (
-    <div className="flex flex-col items-center gap-2 text-center border rounded-md p-4 mb-3">
-      <Label className="font-medium text-xl">Delete Vaccine Record</Label>
+    <Card className="flex flex-col items-center gap-2 text-center rounded-md p-4 mb-3">
+      <Label className="font-medium text-xl">Confirm Vaccine Administration</Label>
       <p className="text-base font-normal text-muted-foreground">
-        Are you sure you want to permanently delete{" "}
-        <strong>{vaccine?.vaccineName!}</strong> vaccine record? This action
-        cannot be undone, and all related data will be removed.
+        Are you sure you want to confirm administartion of {" "}
+        <strong>{vaccine?.vaccineName!}</strong> vaccine by <strong>{vaccine?.administeredBy}.</strong>
       </p>
       <div className="flex flex-wrap gap-3 items-center mt-2">
         <Button
@@ -45,14 +46,14 @@ const DeleteVaccine: React.FC<Props> = ({ vaccine, onClose }) => {
         <Button
           variant={"destructive"}
           disabled={isSubmitting}
-          onClick={handleVaccineDelete}
+          onClick={handleVaccineAdministration}
           className="cursor-pointer"
         >
-          {isSubmitting ? "Deleting..." : "CONFIRM"}
+          {isSubmitting ? "Submitting..." : "CONFIRM"}
         </Button>
       </div>
-    </div>
+    </Card>
   );
 };
 
-export default DeleteVaccine;
+export default ConfirmVaccineAdministration;
