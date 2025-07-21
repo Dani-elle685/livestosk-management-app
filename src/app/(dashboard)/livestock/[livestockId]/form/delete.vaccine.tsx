@@ -21,7 +21,7 @@ const DeleteVaccine: React.FC<Props> = ({ vaccine, onClose }) => {
         toast.success("Vaccine Deletetion Success");
         onClose?.();
       } catch (error: any) {
-        toast.error("Deletion Failed", error.message);
+        toast.error(error.message ?? "Deletion Failed");
       }
     });
   };

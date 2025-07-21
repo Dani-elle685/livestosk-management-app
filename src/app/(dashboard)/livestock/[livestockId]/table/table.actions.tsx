@@ -5,6 +5,7 @@ import { LivestockVaccine } from "@/infrastructure/vaccine/dto/vaccine.dto";
 import { ConfirmTable } from "@/components/reusable-components/deleteTableComponent";
 import CreateVaccineForm from "../form/create.vaccine.form";
 import DeleteVaccine from "../form/delete.vaccine";
+import ConfirmVaccineAdministration from "../form/confirm.administration";
 
 interface Props {
   vaccine: LivestockVaccine;
@@ -20,8 +21,7 @@ const VaccineTableActions: React.FC<Props> = ({ vaccine }) => {
   return (
     <div className="flex items-center gap-2">
       <LivestockDialog
-      title="Confirm Administaration"
-      description="Confirm the vaccine has been administered"
+      
         trigger={
           <CircleCheck
             className={`${
@@ -34,7 +34,7 @@ const VaccineTableActions: React.FC<Props> = ({ vaccine }) => {
         open={openConfirm}
         onOpenChange={(open) => !isCompleted && setOpenConfirm(open)}
       >
-        <div>Check Confirm coming</div>
+        <ConfirmVaccineAdministration vaccine={vaccine} onClose={()=>setOpenConfirm(false)}/>
       </LivestockDialog>
 
       <LivestockDialog

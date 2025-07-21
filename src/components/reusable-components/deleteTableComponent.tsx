@@ -11,8 +11,8 @@ export const ConfirmTable = ({ data }: ConfirmTableProps) => {
                 <tbody>
                     {Object.entries(data).map(([key, value]) => (
                         <tr key={key} className="border-b">
-                            <td className="py-2 px-4 font-xs font-normal">{key} :</td>
-                            <td className="py-2 px-4 font-sm font-medium">
+                            <td className="py-2 px-4 font-xs font-normal capitalize">{key} :</td>
+                            <td className="py-2 px-4 font-sm font-medium capitalize">
                                 {React.isValidElement(value) ? value : String(value)}
                             </td>
                         </tr>
