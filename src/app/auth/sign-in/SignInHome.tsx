@@ -22,6 +22,7 @@ import {
 import { signInService } from "@/infrastructure/auth/services/sign.in.service";
 import { useRouter } from "next/navigation";
 import { generateOtp } from "@/infrastructure/auth/services/verify.otp.service";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 const SignInHome = () => {
     const router = useRouter();
   const form = useForm<SignInFormModel>({
@@ -29,11 +30,15 @@ const SignInHome = () => {
     defaultValues: {
       email: "",
       password: "",
+      captchaToken:""
     },
     mode: "onChange",
   });
 
   const { isSubmitting, isValid } = form.formState;
+  const handleVerificationSuccess =(token:string, ekey:string)=>{
+    form.setValue("captchaToken", token, { shouldValidate: true });
+  }
 
   const onSubmit = async (data: SignInFormModel) => {
     try {
@@ -77,6 +82,12 @@ const SignInHome = () => {
                 placeholder="********"
                 label="Password"
                 type="password"
+              />
+            </div>
+             <div>
+              <HCaptcha
+                sitekey={process.env.NEXT_PUBLIC_HCAPTURE_KEY!}
+                onVerify={(token,ekey) => handleVerificationSuccess(token, ekey)}
               />
             </div>
 

@@ -20,6 +20,7 @@ export const SignUpFormSchema = z
     agreeConditions: z.boolean().refine((val) => val === true, {
       message: "You must agree to the terms and conditions",
     }),
+    captchaToken: z.string().nonempty("Please complete the captcha"),
   })
   .superRefine((data, ctx) => {
     if (data.password !== data.confirmPassword) {
