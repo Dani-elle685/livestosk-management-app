@@ -97,7 +97,7 @@ const FarmInformationUpdateForm: React.FC<Props> = ({
   const handleSubmit = async (data: FarmInformationUpdateModel) => {
     try {
       await updateFarmInfoService(data);
-      toast.success("Udated Livestock Successfully");
+      toast.success("Udated Farm Information Successfully");
       form.reset();
       onSuccess?.();
     } catch (error: any) {

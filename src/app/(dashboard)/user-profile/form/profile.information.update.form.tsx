@@ -33,7 +33,7 @@ const ProfileInformationUpdateForm: React.FC<Props> = ({
   const handleSubmit = async (data: PersonalInformationUpdateModel) => {
     try {
       await updateProfileInfoService(data);
-      toast.success("Udated Livestock Successfully");
+      toast.success("Udated Profile Successfully");
       form.reset();
       onSuccess?.();
     } catch (error: any) {

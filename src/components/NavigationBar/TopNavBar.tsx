@@ -3,6 +3,7 @@ import { AlignJustify, BellDot, ChevronDown, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { useSidebar } from "../ui/sidebar";
+import { ModeToggle } from "@/components/NavigationBar/LightDarkModeToggleButton";
 
 const TopNavBar = ({
   onClick,
@@ -39,6 +40,7 @@ const TopNavBar = ({
           Eng <ChevronDown height={16} width={16} />
         </span>
       </div>
+      <ModeToggle/>
     </div>
   );
 };

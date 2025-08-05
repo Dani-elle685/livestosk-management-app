@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormField, FormItem } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
 import SubmitButton from "@/components/reusable-components/submit.button";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import {
   Card,
   CardContent,
@@ -36,11 +37,15 @@ const SignUpHome = () => {
       lastName: "",
       phoneNumber: "",
       agreeConditions: false,
+      captchaToken: "",
     },
     mode: "onChange",
   });
 
   const { isSubmitting, isValid } = form.formState;
+  const handleVerificationSuccess = (token: string, ekey: string) => {
+    form.setValue("captchaToken", token, { shouldValidate: true });
+  };
 
   const onSubmit = async (data: SignUpFormModel) => {
     try {
@@ -141,6 +146,14 @@ const SignUpHome = () => {
                     </div>
                   </FormItem>
                 )}
+              />
+            </div>
+            <div>
+              <HCaptcha
+                sitekey={process.env.NEXT_PUBLIC_HCAPTURE_KEY!}
+                onVerify={(token, ekey) =>
+                  handleVerificationSuccess(token, ekey)
+                }
               />
             </div>
 
