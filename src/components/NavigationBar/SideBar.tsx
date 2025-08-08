@@ -39,11 +39,11 @@ const menuItems = [
     url: "/livestock",
     title: "Livestock",
   },
-  {
-    icon: FolderKanban,
-    url: "/products",
-    title: "Products",
-  },
+  // {
+  //   icon: FolderKanban,
+  //   url: "/products",
+  //   title: "Products",
+  // },
   {
     icon: ListOrdered,
     url: "/orders",
