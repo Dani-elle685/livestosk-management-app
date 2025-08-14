@@ -31,12 +31,12 @@ import LogoImage from "@/app/favicon.ico";
 const menuItems = [
   {
     icon: HomeIcon,
-    url: "/dashboard",
+    url: "/user/dashboard",
     title: "Dashboard",
   },
   {
     icon: PandaIcon,
-    url: "/livestock",
+    url: "/user/livestock",
     title: "Livestock",
   },
   // {
@@ -46,7 +46,7 @@ const menuItems = [
   // },
   {
     icon: ListOrdered,
-    url: "/orders",
+    url: "/user/orders",
     title: "Orders",
   },
 ];
@@ -59,12 +59,12 @@ const lowerMenu = [
   },
   {
     icon: Settings,
-    url: "/settings",
+    url: "/user/settings",
     title: "Settings",
   },
   {
     icon: LogOut,
-    url: "/logout",
+    url: "/user/logout",
     title: "Logout",
   },
 ];

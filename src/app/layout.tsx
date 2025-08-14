@@ -4,6 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToasterProvider } from "@/components/ToasterProvider";
 import { ThemeProvider } from "@/components/theme-provider";
+import ReduxProvider from "@/components/ReduxProvider";
+import Navbar from "@/components/NavigationBar/NavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,15 +30,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
         <head />
-        <body>
-          <ThemeProvider
+        <body className="bg-[#faf7f7] h-full w-full">
+          <ReduxProvider>
+            <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
+            <Navbar/>
             {children}
+            <ToasterProvider />
           </ThemeProvider>
+          </ReduxProvider>
         </body>
       </html>
   );
