@@ -14,7 +14,7 @@ export default function DashBoardLayout({
   const queryClient = new QueryClient()
   return (
     <QueryClientProvider client={queryClient}>
-    <SidebarProvider className="flex w-full min-h-screen">
+    <SidebarProvider className="flex w-full ">
       <AppSidebar />
       <div className="flex-1 flex flex-col w-full bg-[#FAF7F7]">
         <nav className="">

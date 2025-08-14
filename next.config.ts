@@ -20,8 +20,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cdn.jsdelivr.net",
-        pathname: "/npm/lucide-icons@*",
+        hostname: "images.unsplash.com",
+      },
+       {
+        protocol: "https",
+        hostname: "plus.unsplash.com",
       },
     ],
   },
