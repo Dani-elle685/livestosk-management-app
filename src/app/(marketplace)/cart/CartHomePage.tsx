@@ -195,11 +195,11 @@ const CartHomePage = () => {
                   placeholder="Enter Code"
                   value={coupon}
                   onChange={(e) => setCoupon(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700 outline-none focus:ring-1 focus:ring-[#a91f64]"
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700 outline-none focus:ring-1 focus:ring-red-500"
                 />
                 <button
-                  className="bg-[#a91f64] text-white px-4 py-2 rounded-md hover:bg-[#8a1b54] text-sm"
-                  disabled={cartItems.length === 0}
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-500 text-sm"
+                  disabled={cartItems.length === 0 || !coupon}
                   onClick={applyCoupon}
                 >
                   Apply
@@ -227,7 +227,7 @@ const CartHomePage = () => {
 
             {/* Checkout */}
             <button
-              className="w-full mt-4 bg-[#a91f64] text-white px-4 py-2 rounded-md hover:bg-[#8a1b54] disabled:bg-gray-300 disabled:cursor-not-allowed"
+              className="w-full mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-500 disabled:bg-gray-300 disabled:cursor-not-allowed"
               disabled={cartItems.length === 0}
             >
               Proceed to checkout
