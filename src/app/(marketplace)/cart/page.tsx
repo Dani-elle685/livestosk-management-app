@@ -1,13 +1,10 @@
-import React, { Suspense } from 'react'
-import CartHomePage from './CartHomePage'
+import React from 'react'
+import CartHome from './CartHome'
+
 
 const page = () => {
   return (
-    <Suspense>
-      <div className='bg-[#faf7f7]'>
-          <CartHomePage/>
-      </div>
-    </Suspense>
+    <CartHome/>
   )
 }
 

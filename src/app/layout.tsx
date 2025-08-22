@@ -40,7 +40,7 @@ export default function RootLayout({
           >
             <Navbar/>
             {children}
-            <ToasterProvider />
+            <ToasterProvider/>
           </ThemeProvider>
           </ReduxProvider>
         </body>
